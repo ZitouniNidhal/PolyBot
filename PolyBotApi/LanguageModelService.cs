@@ -1,18 +1,14 @@
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
-public class OpenAIService
+public class LanguageModelService
 {
     private readonly HttpClient _httpClient;
 
-    public OpenAIService()
+    public LanguageModelService(string apiKey)
     {
         _httpClient = new HttpClient();
-        _httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer VOTRE_CLE_API");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
     }
 
-    public async Task<string> GenerateText(string prompt)
+    public async Task<string> GenerateResponseAsync(string prompt)
     {
         var request = new
         {
