@@ -1,3 +1,5 @@
+using System.Text;
+
 public class LanguageModelService
 {
     private readonly HttpClient _httpClient;
@@ -21,7 +23,7 @@ public class LanguageModelService
         var content = new StringContent(
             Newtonsoft.Json.JsonConvert.SerializeObject(request),
             Encoding.UTF8,
-            "application/json"
+            new System.Net.Http.Headers.MediaTypeHeaderValue("application/json")
         );
 
         var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
