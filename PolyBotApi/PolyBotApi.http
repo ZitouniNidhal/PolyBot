@@ -1,0 +1,6 @@
+@PolyBotApi_HostAddress = http://localhost:5030
+
+GET {{PolyBotApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
