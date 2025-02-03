@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PolyBotApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34e601d839dc443c705090947c002581de0a0ec7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcb0c885890c02cb21532bf7a2fd465cee86da8d")]
 [assembly: System.Reflection.AssemblyProductAttribute("PolyBotApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PolyBotApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

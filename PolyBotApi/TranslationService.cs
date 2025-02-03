@@ -33,3 +33,4 @@ public class TranslationService
         return data.translated_text;
     }
 }
+//Il indique clairement que cette classe est responsable de la traduction de texte.
