@@ -30,12 +30,6 @@ namespace PolyBotApi
 
             var response = await _httpClient.PostAsync("https://api.translation-service.com/translate", content);
             var responseBody = await response.Content.ReadAsStringAsync();
-
-            if (string.IsNullOrEmpty(responseBody))
-            {
-                return null;
-            }
-
             dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
             return data?.translated_text;
         }
