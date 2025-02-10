@@ -2,35 +2,43 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-public class TranslationService
+namespace PolyBotApi
 {
-    private readonly HttpClient _httpClient;
-
-    public TranslationService(string apiKey)
+    public class TranslationService
     {
-        _httpClient = new HttpClient();
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-    }
+        private readonly HttpClient _httpClient;
 
-    public async Task<string> TranslateTextAsync(string text, string targetLanguage)
-    {
-        var request = new
+        public TranslationService(string apiKey)
         {
-            text = text,
-            target_language = targetLanguage
-        };
+            _httpClient = new HttpClient();
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+        }
 
-        var content = new StringContent(
-            Newtonsoft.Json.JsonConvert.SerializeObject(request),
-            Encoding.UTF8,
-            "application/json"
-        );
+        public async Task<string> TranslateTextAsync(string text, string targetLanguage)
+        {
+            var request = new
+            {
+                text = text,
+                target_language = targetLanguage
+            };
 
-        var response = await _httpClient.PostAsync("https://api.translation-service.com/translate", content);
-        var responseBody = await response.Content.ReadAsStringAsync();
+            var content = new StringContent(
+                Newtonsoft.Json.JsonConvert.SerializeObject(request),
+                Encoding.UTF8,
+                "application/json"
+            );
 
-        dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
-        return data.translated_text;
+            var response = await _httpClient.PostAsync("https://api.translation-service.com/translate", content);
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            if (string.IsNullOrEmpty(responseBody))
+            {
+                return null;
+            }
+
+            dynamic data = Newtonsoft.Json.JsonConvert.DeserializeObject(responseBody);
+            return data?.translated_text;
+        }
     }
 }
 //Il indique clairement que cette classe est responsable de la traduction de texte.
